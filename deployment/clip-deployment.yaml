@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: clip-deployment
+    labels:
+        app: clip
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: clip
+    template:
+        metadata:
+            labels:
+                app: clip
+        spec:
+            containers:
+                - name: clip
+                  image: clip-deploy:latest
+                  imagePullPolicy: Never
+                  ports:
+                      - containerPort: 8000
